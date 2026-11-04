@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indie Ridge PDP prototype</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 400; font-display: swap; src: url(assets/8762a6e199e5416e344eea333f97d55b.woff2) format('woff2'); }
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 500; font-display: swap; src: url(assets/6d799c3410f5b43439138eb2e291c39b.woff2) format('woff2'); }
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 600 700; font-display: swap; src: url(assets/5e58670df50cc59a136cc1d46ab9bc65.woff2) format('woff2'); }
+:root { --ink: #1a1b18; --text: #232323; --red: #ce0000; --grey: #f6f6f6; --line: #d1d1d1; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #ffffff; color: var(--text); font: 400 16px/1.4 'Helvetica Now Display', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+main { max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px; }
+.eyebrow { margin: 0; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 700; text-transform: uppercase; color: var(--ink); }
+.intro { max-width: 40rem; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 56px; }
+.opt { display: grid; gap: 12px; align-content: start; padding: 24px; background: var(--grey); }
+.opt h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+.opt p { margin: 0; font-size: 14px; }
+.links { display: grid; gap: 8px; margin-top: 8px; }
+.links a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); color: var(--text); font-size: 14px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; text-decoration: none; }
+.links a span { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border: 1px solid var(--text); }
+.links a:hover { color: var(--red); }
+.links a:hover span { background: var(--red); border-color: var(--red); color: #ffffff; }
+.note { margin-top: 48px; font-size: 14px; color: #555555; max-width: 40rem; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Indie Ridge · Product page</p>
+<h1>The Crow — three options</h1>
+<p class="intro">Each option is a working prototype. Open it on a computer to see the desktop layout, or on a phone to see the mobile layout.</p>
+
+<div class="grid">
+<section class="opt">
+<h2>1 · Details drawer</h2>
+<p>Product details open in a drawer from the right, with a section index. On mobile the drawer becomes a full-screen accordion.</p>
+<div class="links"><a href="drawer.html">Men's <span aria-hidden="true">›</span></a><a href="drawer.html?gender=womens">Women's, size 10 sold out <span aria-hidden="true">›</span></a></div>
+</section>
+<section class="opt">
+<h2>2 · Accordion details</h2>
+<p>Product details sit in an accordion under the add to cart, with no drawer.</p>
+<div class="links"><a href="accordion.html">Men's <span aria-hidden="true">›</span></a><a href="accordion.html?gender=womens">Women's, size 10 sold out <span aria-hidden="true">›</span></a></div>
+</section>
+<section class="opt">
+<h2>3 · Gallery grid</h2>
+<p>A large image above a two-by-two grid, with zoom. The product information stays in view while the images scroll.</p>
+<div class="links"><a href="gallery.html">Men's <span aria-hidden="true">›</span></a><a href="gallery.html?gender=womens">Women's, size 10 sold out <span aria-hidden="true">›</span></a></div>
+</section>
+</div>
+
+<p class="note">Things to try: switch Men's / Women's, change the sole colour, pick a sold-out size, open Product details, and on mobile scroll down and back up. Copy, prices and reviews are placeholders.</p>
+</main>
+</body>
+</html>
