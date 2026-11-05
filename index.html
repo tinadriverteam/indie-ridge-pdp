@@ -33,6 +33,11 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 .brand__ir { height: 72px; margin: -12px; }
 .group + .group { margin-top: 96px; }
 .note { margin-top: 48px; font-size: 14px; color: #555555; max-width: 40rem; }
+.decide { max-width: 40rem; margin-top: 48px; }
+.decide h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+.decide ul { margin: 12px 0 0; padding: 0; list-style: none; }
+.decide label { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); font-size: 16px; cursor: pointer; }
+.decide input { width: 18px; height: 18px; margin: 0; accent-color: var(--red); }
 .scroll { z-index: 10; white-space: nowrap; position: fixed; left: 50%; bottom: 24px; display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; transform: translateX(-50%); background: #ffffff; border: 1px solid var(--text); color: var(--text); font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: opacity .3s, background-color .2s, color .2s, border-color .2s; }
 .scroll:hover { background: var(--red); border-color: var(--red); color: #ffffff; }
 .scroll svg { animation: bob 1.6s ease-in-out infinite; }
@@ -92,6 +97,14 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 </div>
 
 <p class="note">Things to try: switch Men's / Women's, change the sole or glove colour, pick a sold-out size, open Product details, and on mobile scroll down and back up. Copy, prices and reviews are placeholders.</p>
+
+<div class="decide">
+<h2>Decisions to make</h2>
+<ul>
+<li><label><input type="checkbox">1. Details pattern: drawer or accordion?</label></li>
+<li><label><input type="checkbox">2. Gallery: carousel or grid?</label></li>
+</ul>
+</div>
 </section>
 </main>
 <a class="scroll" href="#pdp">Product page options <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1.5 6.5 6 11l4.5-4.5" stroke="currentColor" stroke-width="1.5"/></svg></a>
