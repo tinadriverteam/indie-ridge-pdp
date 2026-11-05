@@ -82,7 +82,7 @@ body { margin: 0; }
 
 <p class="label16 optlabel">Color: <span class="optval">{{soleName}}</span></p>
 <div class="soles" role="radiogroup" aria-label="Color">
-<sc-for list="{{soles}}" as="s" hint-placeholder-count="3"><button type="button" role="radio" class="sole" aria-checked="{{s.checked}}" aria-label="{{s.label}}" title="{{s.label}}" onClick="{{s.pick}}" style="background: {{s.color}};"></button></sc-for>
+<sc-for list="{{soles}}" as="s" hint-placeholder-count="3"><button type="button" role="radio" class="sole" aria-checked="{{s.checked}}" aria-label="{{s.label}}" title="{{s.label}}" onClick="{{s.pick}}" style="background: linear-gradient(135deg, {{s.top}} 50%, {{s.color}} 50%);"></button></sc-for>
 </div>
 
 <p class="label16 optlabel">{{sizesLabel}}: {{size}}</p>
@@ -355,18 +355,25 @@ class Component extends DCLogic {
     const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'], OUT = ['XXL'];
     const size = this.state.size || 'L';
     const soldOut = OUT.includes(size);
-    const SOLES = [{ label: 'Denim On Brown', color: '#5a3a28' }, { label: 'Denim On Black', color: '#1e2124' }, { label: 'Black On Black', color: '#151515' }, { label: 'Black Denim On Camel', color: '#d27742' }];
+    // Upper-left is the denim, lower-right the leather
+    const SOLES = [{ label: 'Denim On Brown', top: '#2c3a55', color: '#5a3a28' }, { label: 'Denim On Black', top: '#2c3a55', color: '#151515' }, { label: 'Black On Black', top: '#2b2b2b', color: '#111111' }, { label: 'Black Denim On Camel', top: '#2b2b2b', color: '#c8743f' }];
     const soleName = this.state.sole || 'Denim On Brown';
     const B = '/_blob/', V = { video: true }, POSTER = '';
-    // shortcut: every colour shows the Denim On Brown photos, swap per colour when product photos exist
-    const list = [
-      ['assets/2f104fadecabeb0c36995206d1e7cc52.jpg', 'Brown perforated leather and blue denim glove, top view'],
-      ['assets/ce421e32965e49e0cdaf78b982d0e4a6.jpg', 'Brown leather glove, palm facing up'],
-      ['assets/542a3f395a1d5c3c402a8976f3d94f41.jpg', 'Pair of Denim On Brown gloves'],
-      ['assets/09238348bcbc496472b4f15dea7cdc73.jpg', 'Pair of Denim On Brown gloves on a dark background'],
-      ['assets/bb9cd4406344494be8973be8930a7340.jpg', 'Gloved hand on a motorcycle clutch lever'],
-      ['assets/eb76f507bce3955f1f713a07c4dfa665.jpg', 'Denim On Brown glove resting on a helmet']
-    ];
+    // shortcut: the other colours have one photo each, add more when they exist
+    const GALLERY = {
+      'Denim On Brown': [
+        ['assets/2f104fadecabeb0c36995206d1e7cc52.jpg', 'Brown perforated leather and blue denim glove, top view'],
+        ['assets/ce421e32965e49e0cdaf78b982d0e4a6.jpg', 'Brown leather glove, palm facing up'],
+        ['assets/542a3f395a1d5c3c402a8976f3d94f41.jpg', 'Pair of Denim On Brown gloves'],
+        ['assets/09238348bcbc496472b4f15dea7cdc73.jpg', 'Pair of Denim On Brown gloves on a dark background'],
+        ['assets/bb9cd4406344494be8973be8930a7340.jpg', 'Gloved hand on a motorcycle clutch lever'],
+        ['assets/eb76f507bce3955f1f713a07c4dfa665.jpg', 'Denim On Brown glove resting on a helmet']
+      ],
+      'Denim On Black': [['assets/4f73fc11721444481768987a7e4ea04e.webp', 'Denim On Black glove, side view']],
+      'Black On Black': [['assets/417e3534671c4b5937485176362db0d0.jpg', 'Black On Black glove, side view']],
+      'Black Denim On Camel': [['assets/b894630f781212fe4bcd4f6c737c5300.webp', 'Black Denim On Camel glove, side view']]
+    };
+    const list = GALLERY[soleName];
     const idx = (this.state.idx || 0) % list.length;
     // The stage is a scroll-snap track: swipe on touch, arrows and thumbnails scroll it, scrolling sets the index
     const go = (i, smooth = true) => { this.setState({ idx: i }); const t = document.getElementById('gal-track'); if (t) t.scrollTo({ left: i * t.clientWidth, behavior: smooth ? 'smooth' : 'auto' }); };
