@@ -48,7 +48,10 @@
 
 .gal { position: sticky; top: 138px; display: grid; gap: 11px; }
 .gal__stage { position: relative; width: 647px; aspect-ratio: 1 / 1; margin-left: 60px; overflow: hidden; background: var(--grey); }
-.gal__stage img, .gal__stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gal__track { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+.gal__track::-webkit-scrollbar { display: none; }
+.gal__slide { position: relative; flex: 0 0 100%; scroll-snap-align: start; scroll-snap-stop: always; }
+.gal__slide img, .gal__slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .gal__nav { display: flex; justify-content: space-between; align-items: center; padding-left: 11px; }
 .thumbs { display: flex; gap: 8px; }
 .thumb { position: relative; width: 44px; height: 44px; padding: 0; border: 1px solid transparent; background: var(--grey); cursor: pointer; overflow: hidden; }

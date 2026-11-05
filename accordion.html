@@ -40,8 +40,12 @@ body { margin: 0; }
 <div class="gal" role="region" aria-roledescription="carousel" aria-label="Product images">
 <div class="gal__stage">
 <span class="gal__count" aria-live="polite">{{cur.count}}</span>
-<sc-if value="{{cur.isImg}}" hint-placeholder-val="{{yes}}"><img src="{{cur.src}}" alt="{{cur.alt}}"></sc-if>
-<sc-if value="{{cur.isVideo}}" hint-placeholder-val="{{no}}"><video src="assets/823301a05a85f42b1cc914fce7813278.mp4" poster="assets/a54b8d729277641a91ea0ccb166779bc.jpg" controls="" muted="" loop="" playsinline="" aria-label="The Crow on the bike"></video></sc-if>
+<div class="gal__track" id="gal-track" onScroll="{{trackScroll}}">
+<sc-for list="{{media}}" as="m" hint-placeholder-count="5"><div class="gal__slide">
+<sc-if value="{{m.isImg}}" hint-placeholder-val="{{yes}}"><img src="{{m.src}}" alt="{{m.alt}}"></sc-if>
+<sc-if value="{{m.isVideo}}" hint-placeholder-val="{{no}}"><video src="assets/823301a05a85f42b1cc914fce7813278.mp4" poster="assets/a54b8d729277641a91ea0ccb166779bc.jpg" controls="" muted="" loop="" playsinline="" aria-label="The Crow on the bike"></video></sc-if>
+</div></sc-for>
+</div>
 </div>
 <div class="gal__nav">
 <div class="thumbs" role="group" aria-label="Choose an image">
@@ -422,6 +426,8 @@ class Component extends DCLogic {
     };
     const list = GALLERY[soleName];
     const idx = (this.state.idx || 0) % list.length;
+    // The stage is a scroll-snap track: swipe on touch, arrows and thumbnails scroll it, scrolling sets the index
+    const go = (i, smooth = true) => { this.setState({ idx: i }); const t = document.getElementById('gal-track'); if (t) t.scrollTo({ left: i * t.clientWidth, behavior: smooth ? 'smooth' : 'auto' }); };
     const media = list.map((x, i) => ({
       isVideo: x === V, isImg: x !== V, src: x[0], alt: x[1],
       thumb: x === V ? POSTER : x[0],
@@ -430,7 +436,7 @@ class Component extends DCLogic {
       zoom: () => this.setState({ zoom: i }),
       label: 'Image ' + (i + 1) + ' of ' + list.length,
       current: String(i === idx),
-      pick: () => this.setState({ idx: i })
+      pick: () => go(i)
     }));
     const DTABS = ['Product details', 'Size & fit', 'CE certification', 'Version history', 'Shipping & returns'];
     const dTab = this.state.dTab || 'Product details';
@@ -455,12 +461,13 @@ class Component extends DCLogic {
       setWomens: () => this.setState({ g: 'womens' }),
       collection: m ? "Men's Boots" : "Women's Boots",
       subtitle: 'Waterproof Motorcycle Boots',
-      soles: SOLES.map((o) => ({ ...o, checked: String(o.label === soleName), pick: () => this.setState({ sole: o.label, idx: 0 }) })),
+      soles: SOLES.map((o) => ({ ...o, checked: String(o.label === soleName), pick: () => { this.setState({ sole: o.label, idx: 0 }); setTimeout(() => go(0, false), 0); } })),
       soleName,
       media,
       cur: Object.assign({ count: (idx + 1) + ' / ' + list.length }, media[idx]),
-      prevMedia: () => this.setState({ idx: (idx - 1 + list.length) % list.length }),
-      nextMedia: () => this.setState({ idx: (idx + 1) % list.length }),
+      prevMedia: () => go((idx - 1 + list.length) % list.length),
+      nextMedia: () => go((idx + 1) % list.length),
+      trackScroll: (e) => { const t = e.currentTarget, i = Math.round(t.scrollLeft / t.clientWidth); if (i !== idx && i >= 0 && i < list.length) this.setState({ idx: i }); },
       sizesLabel: m ? "Men's size" : "Women's size",
       sizeOptions: SIZES[g].map((v) => {
         const out = OUT[g].includes(v);
