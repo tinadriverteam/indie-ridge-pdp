@@ -78,7 +78,6 @@ body { margin: 0; }
 </div>
 <h1 class="title">Denim On Brown</h1>
 <div class="d-row subrow"><p>{{subtitle}}</p><p>$85</p></div>
-<div class="d-row verrow"><b>VERSION [—]</b><span>Released [Month YYYY]</span></div>
 
 <p class="label16 optlabel">Color: <span class="optval">{{soleName}}</span></p>
 <div class="soles" role="radiogroup" aria-label="Color">
@@ -173,7 +172,6 @@ body { margin: 0; }
 <div>
 <p class="eyebrow">Size &amp; fit</p>
 <h2 class="h1x" id="fit-h">Measure your hand</h2>
-<img class="gfit__img" src="assets/a24e6764c1ee80ce8c3eb0fe9296193a.jpg" alt="How to measure your hand: 1, middle finger length on the palm side. 2, knuckle width.">
 </div>
 <div>
 <ol class="steps steps--num gsteps">
@@ -359,7 +357,6 @@ class Component extends DCLogic {
     const SOLES = [{ label: 'Denim On Brown', top: '#2c3a55', color: '#5a3a28' }, { label: 'Denim On Black', top: '#2c3a55', color: '#151515' }, { label: 'Black On Black', top: '#2b2b2b', color: '#111111' }, { label: 'Black Denim On Camel', top: '#2b2b2b', color: '#c8743f' }];
     const soleName = this.state.sole || 'Denim On Brown';
     const B = '/_blob/', V = { video: true }, POSTER = '';
-    // shortcut: the other colours have one photo each, add more when they exist
     const GALLERY = {
       'Denim On Brown': [
         ['assets/2f104fadecabeb0c36995206d1e7cc52.jpg', 'Brown perforated leather and blue denim glove, top view'],
@@ -367,11 +364,13 @@ class Component extends DCLogic {
         ['assets/542a3f395a1d5c3c402a8976f3d94f41.jpg', 'Pair of Denim On Brown gloves'],
         ['assets/09238348bcbc496472b4f15dea7cdc73.jpg', 'Pair of Denim On Brown gloves on a dark background'],
         ['assets/bb9cd4406344494be8973be8930a7340.jpg', 'Gloved hand on a motorcycle clutch lever'],
-        ['assets/eb76f507bce3955f1f713a07c4dfa665.jpg', 'Denim On Brown glove resting on a helmet']
+        ['assets/eb76f507bce3955f1f713a07c4dfa665.jpg', 'Denim On Brown glove resting on a helmet'],
+        ['assets/52324be88e72ae6cd4db48df05733477.webp', 'Denim On Brown glove on a clutch lever'],
+        ['assets/9dbc2df5cd6d350d6391f034af749e48.webp', 'Rider pulling on Denim On Brown gloves']
       ],
-      'Denim On Black': [['assets/4f73fc11721444481768987a7e4ea04e.webp', 'Denim On Black glove, side view']],
-      'Black On Black': [['assets/417e3534671c4b5937485176362db0d0.jpg', 'Black On Black glove, side view']],
-      'Black Denim On Camel': [['assets/b894630f781212fe4bcd4f6c737c5300.webp', 'Black Denim On Camel glove, side view']]
+      'Denim On Black': [['assets/4f73fc11721444481768987a7e4ea04e.webp', 'Denim On Black glove, side view'], ['assets/94c8ccee19bb5d3c477aea5bb5a73fee.webp', 'Pair of Denim On Black gloves, back and palm'], ['assets/d47df63c85a84153d148592c963432a9.webp', 'Denim On Black glove, palm view'], ['assets/2f7f97285a8fb53614feab8765715ca3.webp', 'Rider pulling on Denim On Black gloves'], ['assets/48acd977afa766a1e9d7f59054adcb51.webp', 'Using a phone in Denim On Black gloves']],
+      'Black On Black': [['assets/417e3534671c4b5937485176362db0d0.jpg', 'Black On Black glove, side view'], ['assets/99023d868dfa2ffca852de563bc0f7c3.webp', 'Black On Black glove at a fuel pump'], ['assets/efe916945e07acf73d3570af4e7bd8ce.webp', 'Black On Black glove on a handlebar']],
+      'Black Denim On Camel': [['assets/b894630f781212fe4bcd4f6c737c5300.webp', 'Black Denim On Camel glove, side view'], ['assets/3fdadde7f9db7163228c0e7253d18868.webp', 'Black Denim On Camel glove, palm view'], ['assets/a0b8581900f5ff61122a148bc3405e19.webp', 'Pair of Black Denim On Camel gloves, back and palm'], ['assets/a75f63c61099fe5cecd70ebb8a81458a.webp', 'Rider in Black Denim On Camel gloves, hands crossed'], ['assets/97c4a93491a3e3ca0acc239c7068a568.webp', 'Black Denim On Camel gloves, fists together'], ['assets/63fe9ae6b97048509aecf6495d38be0b.webp', 'Black Denim On Camel gloves on a motorcycle headlight']]
     };
     const list = GALLERY[soleName];
     const idx = (this.state.idx || 0) % list.length;
@@ -470,7 +469,7 @@ class Component extends DCLogic {
       also: [
         { name: 'Full Gauntlet • Brown', type: GLOVE, price: '$85', count: 236, img: 'assets/a758fff12ca7003d9af78e0117bfcfdd.jpg' },
         { name: 'The Golden Glove', type: GLOVE, price: '$85', count: 332, img: 'assets/713d050902a6f489231a55d1e070ee1b.jpg' },
-        { name: 'Black Denim On Camel', type: GLOVE, price: '$85', count: 98, img: 'assets/1d3c7d61f865e6a31889b4e1b372ea1a.jpg' },
+        { name: 'Black Denim On Camel', type: GLOVE, price: '$85', count: 98, img: 'assets/b894630f781212fe4bcd4f6c737c5300.webp' },
         { name: 'The Getaway Glove', type: GLOVE, price: '$85', count: 120, img: 'assets/bebe2b5742b930cf9ba85bf80c9222cc.webp' }
       ]
     };

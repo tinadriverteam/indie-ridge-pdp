@@ -328,7 +328,6 @@
 /* Gloves */
 .specs--plain { height: auto; padding-bottom: 80px; }
 .specs__lead { margin-top: 16px; max-width: 30rem; }
-.gfit__img { display: block; width: 100%; max-width: 440px; margin-top: 32px; border: 1px solid var(--line); background: #ffffff; }
 .gsize { margin-top: 24px; }
 .gsize th, .gsize td { width: 33%; }
 .gsize thead th { font-weight: 500; }
@@ -393,7 +392,6 @@
   .specs { height: auto; padding: 48px 16px 260px; grid-template-columns: minmax(0, 1fr); row-gap: 40px; background-size: 100% auto; background-position: center calc(100% + 60px); }
   .specs .h1x { max-width: none; }
   .specs--plain { padding-bottom: 48px; }
-  .gfit__img { margin-top: 24px; }
   .kv th { width: 193px; padding-left: 8px; padding-right: 4px; }
 
   .sec { padding: 64px 16px; }
