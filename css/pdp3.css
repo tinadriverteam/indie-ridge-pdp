@@ -321,6 +321,8 @@
 .steps--num li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; }
 .steps--num li::before { counter-increment: s; content: "0" counter(s); font-weight: 700; color: var(--red); }
 
+.sg-lead { font-weight: 700; }
+
 /* Mobile-only parts (hidden on desktop) */
 .nh-left { display: flex; align-items: center; }
 .nh-menu, .gal__count, .rec__arrows, .satc, .nh-cbar { display: none; }
