@@ -346,12 +346,12 @@
   /* The category row slides under the header instead of collapsing, so the page never changes height while scrolling */
   .nh-ann, .nh-row { position: relative; z-index: 1; }
   .nh-row { background: #ffffff; }
-  .nh-cbar { position: absolute; top: 100%; left: 0; right: 0; z-index: 0; display: flex; justify-content: space-between; align-items: center; height: 48px; padding: 0 16px; border-bottom: 1px solid var(--line); background: #ffffff; transition: transform .3s ease; }
-  .nh-cbar a { font-size: 14px; text-transform: uppercase; color: var(--text); }
+  .nh-cbar { position: absolute; top: 100%; left: 0; right: 0; z-index: 0; display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 16px; border-bottom: 1px solid var(--line); background: #ffffff; transition: transform .3s ease; }
+  .nh-cbar a { font-size: 13px; font-weight: 500; line-height: 1.5; letter-spacing: 1.04px; text-transform: uppercase; color: var(--text); }
   .nh-cbar a:hover { color: var(--red); }
   .nh-cbar.is-hidden { transform: translateY(-100%); }
 
-  .top { padding: 48px 16px 48px; }
+  .top { padding: 40px 16px 48px; }
   .crumbs { padding: 10px 0; }
   .pi { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
   .gal { position: static; margin: 0 -16px; gap: 10px; }
