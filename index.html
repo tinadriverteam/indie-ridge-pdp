@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Indie Ridge PDP prototype</title>
+<title>Indie Ridge prototype</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <style>
@@ -26,11 +26,32 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 .links a span { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border: 1px solid var(--text); }
 .links a:hover { color: var(--red); }
 .links a:hover span { background: var(--red); border-color: var(--red); color: #ffffff; }
+.group + .group { margin-top: 96px; }
 .note { margin-top: 48px; font-size: 14px; color: #555555; max-width: 40rem; }
 </style>
 </head>
 <body>
 <main>
+<section class="group">
+<p class="eyebrow">Indie Ridge · Homepage</p>
+<h1>Homepage — two versions</h1>
+<p class="intro">Product cards and Shop boots open the product page.</p>
+
+<div class="grid">
+<section class="opt">
+<h2>1 · Version 1</h2>
+<p>Full-width hero, best sellers, Seven-Year Shirt, categories, editorial and the Indie Ridge difference. The alt layout groups best sellers into tabs.</p>
+<div class="links"><a href="home.html">Version 1 <span aria-hidden="true">›</span></a><a href="home.html?version=alt">Version 1 alt, tabbed best sellers <span aria-hidden="true">›</span></a></div>
+</section>
+<section class="opt">
+<h2>2 · Version 2</h2>
+<p>Split video hero, tabbed best sellers, difference tiles, Seven-Year Shirt carousel and collection links.</p>
+<div class="links"><a href="home-v2.html">Version 2 <span aria-hidden="true">›</span></a></div>
+</section>
+</div>
+</section>
+
+<section class="group">
 <p class="eyebrow">Indie Ridge · Product page</p>
 <h1>The Crow — three options</h1>
 <p class="intro">Each option is a working prototype. Open it on a computer to see the desktop layout, or on a phone to see the mobile layout.</p>
@@ -54,6 +75,7 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 </div>
 
 <p class="note">Things to try: switch Men's / Women's, change the sole colour, pick a sold-out size, open Product details, and on mobile scroll down and back up. Copy, prices and reviews are placeholders.</p>
+</section>
 </main>
 </body>
 </html>

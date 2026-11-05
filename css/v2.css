@@ -1,0 +1,100 @@
+/* Homepage version 2. Builds on pdp3.css and hp.css. */
+.v2-h { font-size: 72px; line-height: 1.1; font-weight: 700; text-transform: uppercase; color: var(--ink); text-align: center; }
+.v2-center { display: grid; justify-items: center; gap: 32px; padding: 0 48px; }
+.v2-center .v2-h { max-width: 892px; }
+.v2-ghost { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 30px; border: 1px solid #ffffff; border-radius: 1px; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; text-decoration: none; transition: background-color .2s, color .2s; }
+.v2-ghost { transition: background-color .2s, border-color .2s, color .2s; }
+.v2-ghost:hover { background: var(--red); border-color: var(--red); color: #ffffff; }
+.v2-ghost:active { background: #a30000; border-color: #a30000; }
+.v2 .hp-arrows { justify-content: center; }
+
+/* Split hero */
+.v2-hero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.v2-panel { position: relative; aspect-ratio: 1 / 1; overflow: hidden; color: #ffffff; }
+.v2-panel__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .4); }
+.v2-panel__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100%; padding: 56px 40px 40px; box-sizing: border-box; text-align: center; }
+.v2-panel h1, .v2-panel h2 { margin-top: auto; margin-bottom: auto; font-size: 72px; line-height: 1.1; font-weight: 700; text-transform: uppercase; color: #ffffff; }
+.v2-panel__logo { position: absolute; top: 93px; left: 50%; width: 100px; height: 100px; transform: translateX(-50%); }
+
+/* Tabs with a sliding red underline */
+.v2-tabs { display: flex; justify-content: center; gap: 40px; box-shadow: inset 0 -2px 0 var(--line); }
+.v2-tab { padding: 4px 6px 6px; border: 0; border-bottom: 2px solid transparent; background: none; font-size: 24px; font-weight: 500; color: var(--text); cursor: pointer; }
+.v2-tab[aria-pressed="true"] { border-bottom-color: var(--red); }
+.v2-tab:hover { color: var(--red); }
+
+.v2-best { padding: 80px 0; }
+/* scroll-padding keeps the first card off the edge; without it scroll-snap pulls it flush left */
+.v2-best .hp-row, .v2-shirt .hp-row { padding: 0 48px; scroll-padding-inline: 48px; }
+.v2-best .hp-arrows { margin: 40px 0; }
+
+/* Difference tiles */
+.v2-diff { padding: 0 48px 80px; }
+.v2-diff .v2-h { margin-bottom: 80px; }
+.v2-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.v2-tile { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 680px; padding: 40px; overflow: hidden; color: #ffffff; text-align: center; background: var(--grey); }
+.v2-tile::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(0, 0, 0, .2); }
+.v2-tile > * { position: relative; z-index: 2; }
+.v2-tile > .hp-img { position: absolute; z-index: 0; }
+.v2-tile > .v2-tile__mark { position: absolute; }
+.v2-tile h3 { font-size: 32px; line-height: 1.1; font-weight: 700; color: #ffffff; }
+.v2-tile__mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.v2-tile__badge { width: 140px; height: auto; }
+.v2-tile__ring { display: grid; place-items: center; width: 140px; height: 140px; border: 2px solid #ffffff; border-radius: 50%; box-sizing: border-box; }
+.v2-tile .btn-red { text-decoration: none; }
+
+/* Seven Year Shirt */
+.v2-shirt { padding: 40px 0 80px; }
+.v2-shirt .v2-center { gap: 32px; }
+.v2-sub { font-size: 24px; font-weight: 500; color: var(--red); text-align: center; }
+.v2-shirt .hp-arrows { margin: 48px 0 80px; }
+
+/* Collection links: the photo follows the hovered link */
+.v2-clinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center; padding: 80px 48px; }
+.v2-clinks ul { display: grid; gap: 12px; padding: 0; list-style: none; }
+.v2-clinks a { font-size: 40px; line-height: 1.15; font-weight: 500; color: #9b9b9b; text-decoration: none; }
+.v2-clinks a[aria-current="true"] { color: var(--red); }
+.v2-clinks sup { margin-left: 4px; font-size: 13px; font-weight: 400; vertical-align: super; }
+.v2-clinks__media { position: relative; aspect-ratio: 1 / 1; overflow: hidden; }
+
+/* Brand statement */
+.v2-risk { display: grid; justify-items: center; gap: 40px; padding: 80px 96px; text-align: center; color: var(--red); }
+.v2-risk .v2-h { color: var(--red); }
+.v2-risk p { max-width: 1248px; font-size: 24px; line-height: 1.1; font-weight: 500; }
+.v2-risk .hp-eyebrow { color: var(--red); }
+
+/* Footer: logo centred above the columns */
+.v2 .ftr__logo { display: grid; justify-items: center; gap: 0; width: auto; height: auto; margin: 0 auto; color: #ffffff; text-decoration: none; }
+.v2 .ftr__logo svg { width: 80px; height: auto; }
+.v2 .ftr__logo span { font-size: 14px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.v2 .ftr__cols { grid-template-columns: 376px 376px minmax(0, 1fr); gap: 32px; margin-top: 88px; }
+.v2 .ftr h2 { font-size: 16px; margin-bottom: 24px; }
+
+@media (max-width: 749px) {
+  .v2-h { font-size: 36px; }
+  .v2-center { padding: 0 16px; gap: 24px; }
+  .v2-hero { grid-template-columns: minmax(0, 1fr); }
+  .v2-panel__in { padding: 22px 22px 22px; }
+  .v2-panel h1, .v2-panel h2 { font-size: 48px; }
+  .v2-panel__logo { top: 40px; width: 64px; height: 64px; }
+  /* stretch, not the parent's centring: a centred row wider than the screen overflows to the left, where it can't be scrolled to */
+  .v2-tabs { justify-self: stretch; justify-content: flex-start; gap: 16px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px; scroll-padding-inline: 16px; }
+  .v2-tab { flex: none; font-size: 18px; }
+  .v2-best { padding: 56px 0; }
+  .v2-best .hp-row, .v2-shirt .hp-row { padding: 0 16px; scroll-padding-inline: 16px; }
+  .v2-best .hp-arrows, .v2-shirt .hp-arrows { margin: 24px 0 32px; }
+  .v2-diff { padding: 40px 16px; }
+  .v2-diff .v2-h { margin-bottom: 40px; }
+  .v2-tiles { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .v2-tile { min-height: 460px; padding: 36px; }
+  .v2-tile h3 { font-size: 36px; }
+  .v2-tile__badge { width: 100px; }
+  .v2-tile__ring { width: 100px; height: 100px; }
+  .v2-sub { font-size: 24px; }
+  .v2-clinks { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 68px 16px; }
+  .v2-clinks a { font-size: 28px; }
+  .v2-clinks__media { margin: 0 -16px; }
+  .v2-risk { gap: 24px; padding: 56px 16px; }
+  .v2-risk .v2-h { font-size: 48px; }
+  .v2 .ftr__logo { order: 0; }
+  .v2 .ftr__cols { margin-top: 0; }
+}
