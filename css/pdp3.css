@@ -353,11 +353,12 @@
   .nh-cbar.is-hidden { transform: translateY(-100%); }
 
   .top { padding: 48px 16px 48px; }
-  .crumbs { padding: 14px 0; }
+  .crumbs { padding: 10px 0; }
   .pi { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
   .gal { position: static; margin: 0 -16px; gap: 10px; }
-  .gal__stage { width: 100%; margin: 0; }
-  .gal__count { display: block; position: absolute; left: 50%; bottom: 14px; z-index: 1; transform: translateX(-50%); padding: 4px 14px; border-radius: 999px; background: rgba(26, 27, 24, .55); color: #ffffff; font-size: 14px; font-weight: 500; }
+  /* Image shrinks on short screens so the thumbnails and arrows stay above the sticky add-to-cart bar */
+  .gal__stage { width: 100%; margin: 0; aspect-ratio: auto; height: clamp(220px, calc(100svh - 330px), 100vw); }
+  .gal__slide img { object-fit: contain; }
   .gal__nav { padding: 0 16px 0 10px; }
   .thumbs { gap: 6px; }
   .thumb { width: 46px; height: 46px; }
