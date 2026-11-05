@@ -14,7 +14,7 @@
   var interp = function (s, scope) { return s.replace(/\{\{\s*([^}]+?)\s*\}\}/g, function (_, p) { var v = lookup(p, scope); return v == null ? '' : String(v); }); };
   var camel = function (s) { return s.replace(/-([a-z])/g, function (_, c) { return c.toUpperCase(); }); };
 
-  var EVENTS = { onclick: 'onClick', onscroll: 'onScroll', onsubmit: 'onSubmit', onchange: 'onChange', oninput: 'onInput' };
+  var EVENTS = { onclick: 'onClick', onmouseenter: 'onMouseEnter', onfocus: 'onFocus', onscroll: 'onScroll', onsubmit: 'onSubmit', onchange: 'onChange', oninput: 'onInput' };
   var RENAME = { 'class': 'className', 'for': 'htmlFor', tabindex: 'tabIndex', readonly: 'readOnly', playsinline: 'playsInline', colspan: 'colSpan', rowspan: 'rowSpan', autoplay: 'autoPlay' };
   var BOOL = { readOnly: 1, disabled: 1, open: 1, controls: 1, muted: 1, loop: 1, playsInline: 1, autoPlay: 1, checked: 1, required: 1 };
   var NO_TEXT = { table: 1, thead: 1, tbody: 1, tr: 1, ul: 1, ol: 1, select: 1 };
