@@ -357,7 +357,7 @@
   .pi { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
   .gal { position: static; margin: 0 -16px; gap: 10px; }
   /* Image shrinks on short screens so the thumbnails and arrows stay above the sticky add-to-cart bar */
-  .gal__stage { width: 100%; margin: 0; aspect-ratio: auto; height: clamp(220px, calc(100svh - 330px), 100vw); }
+  .gal__stage { width: 100%; margin: 0; aspect-ratio: auto; height: clamp(220px, calc(var(--vh) - 330px), 100vw); }
   .gal__slide img { object-fit: contain; }
   .gal__nav { padding: 0 16px 0 10px; }
   .thumbs { gap: 6px; }

@@ -19,7 +19,7 @@ body { margin: 0; }
 <body>
 <div id="root"></div>
 <template id="tpl">
-<div class="p3" style="font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #232323;">
+<div class="p3" style="font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #232323; --vh: {{vh}};">
 
 <div class="nh">
 <div class="nh-ann"><span>Free shipping for orders over $200</span><span class="nh-ann__sep" aria-hidden="true"></span><a href="#">Exchanges &amp; returns</a></div>
@@ -457,6 +457,7 @@ class Component extends DCLogic {
       yes: true, no: false, five: 5,
       rating: 4.9, reviewCount: 1707, n372: 372,
       cartCount: this.state.cart || 0,
+      vh: this.props.vh ? this.props.vh + 'px' : '100svh',
       cbarCls: this.state.navHidden ? 'nh-cbar is-hidden' : 'nh-cbar',
       mensPressed: String(m), womensPressed: String(!m),
       setMens: () => this.setState({ g: 'mens' }),
