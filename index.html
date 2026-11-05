@@ -15,6 +15,7 @@
 body { margin: 0; background: #ffffff; color: var(--text); font: 400 16px/1.4 'Helvetica Now Display', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 main { max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px; }
 .eyebrow { margin: 0; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+html { scroll-behavior: smooth; }
 h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; font-weight: 700; text-transform: uppercase; color: var(--ink); }
 .intro { max-width: 40rem; margin: 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 56px; }
@@ -32,6 +33,12 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 .brand__ir { height: 72px; margin: -12px; }
 .group + .group { margin-top: 96px; }
 .note { margin-top: 48px; font-size: 14px; color: #555555; max-width: 40rem; }
+.scroll { z-index: 10; white-space: nowrap; position: fixed; left: 50%; bottom: 24px; display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; transform: translateX(-50%); background: #ffffff; border: 1px solid var(--text); color: var(--text); font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: opacity .3s, background-color .2s, color .2s, border-color .2s; }
+.scroll:hover { background: var(--red); border-color: var(--red); color: #ffffff; }
+.scroll svg { animation: bob 1.6s ease-in-out infinite; }
+.scroll.is-hidden { opacity: 0; pointer-events: none; }
+@keyframes bob { 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) { .scroll svg { animation: none; } }
 </style>
 </head>
 <body>
@@ -56,7 +63,7 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 </div>
 </section>
 
-<section class="group">
+<section class="group" id="pdp">
 <p class="eyebrow">Indie Ridge · Product page</p>
 <h1>PDP — three options</h1>
 <p class="intro">Each option is a working prototype. Open it on a computer to see the desktop layout, or on a phone to see the mobile layout.</p>
@@ -82,5 +89,10 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 <p class="note">Things to try: switch Men's / Women's, change the sole colour, pick a sold-out size, open Product details, and on mobile scroll down and back up. Copy, prices and reviews are placeholders.</p>
 </section>
 </main>
+<a class="scroll" href="#pdp">Product page options <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1.5 6.5 6 11l4.5-4.5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+<script>
+const cue = document.querySelector('.scroll');
+new IntersectionObserver(([e]) => cue.classList.toggle('is-hidden', e.isIntersecting)).observe(document.querySelector('#pdp h1'));
+</script>
 </body>
 </html>
