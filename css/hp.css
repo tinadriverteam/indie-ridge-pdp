@@ -169,6 +169,6 @@
 /* V1 alt: nav sits beside the logo instead of centred */
 @media (min-width: 750px) {
   .hp--alt .nh-row { grid-template-columns: auto 1fr auto; }
-  .hp--alt .nh-nav { gap: 0; margin-left: 18px; }
-  .hp--alt .nh-ni { padding: 0 10px; }
+  .hp--alt .nh-nav { gap: 8px; margin-left: 24px; }
+  .hp--alt .nh-ni { padding: 0 8px; letter-spacing: .08em; }
 }
