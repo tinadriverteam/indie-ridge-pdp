@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product carousels · Indie Ridge prototype</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="stylesheet" href="css/bundle.css">
+<link rel="stylesheet" href="css/pdp3.css">
+<link rel="stylesheet" href="css/hp.css">
+<style>
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 400; font-style: normal; font-display: swap; src: url(assets/8762a6e199e5416e344eea333f97d55b.woff2) format('woff2'); }
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 500; font-style: normal; font-display: swap; src: url(assets/6d799c3410f5b43439138eb2e291c39b.woff2) format('woff2'); }
+@font-face { font-family: 'Helvetica Now Display'; font-weight: 600 700; font-style: normal; font-display: swap; src: url(assets/5e58670df50cc59a136cc1d46ab9bc65.woff2) format('woff2'); }
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<template id="tpl">
+<div class="{{rootCls}}" style="font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #232323; background: #ffffff;">
+<section class="hp-best" aria-labelledby="hp-best-h">
+<div class="hp-head">
+<div class="hp-title" style="flex: 1;">
+<sc-if value="{{isV1}}" hint-placeholder-val="{{yes}}"><p class="hp-eyebrow">Best sellers</p></sc-if>
+<h2 class="h2" id="hp-best-h">What Riders Wear Most</h2>
+<sc-if value="{{isAlt}}" hint-placeholder-val="{{no}}">
+<div class="hp-tabs" role="group" aria-label="Filter best sellers">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4"><button type="button" class="hp-tab" aria-pressed="{{t.on}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+</div>
+</sc-if>
+</div>
+<div class="hp-arrows"><button type="button" class="sq sq--lg" aria-label="Previous products" onClick="{{bestPrev}}"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="M12.5 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" class="sq sq--lg" aria-label="Next products" onClick="{{bestNext}}"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div>
+</div>
+<div class="hp-row" id="best-row">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="8">
+<a class="hp-card" href="{{p.href}}">
+<span class="hp-card__media">
+<span class="hp-badges"><sc-if value="{{p.n}}" hint-placeholder-val="{{yes}}"><span class="hp-badge hp-badge--new">New</span></sc-if><sc-if value="{{p.f}}" hint-placeholder-val="{{yes}}"><span class="{{p.fcls}}">{{p.f}}</span></sc-if></span>
+<img class="hp-img" src="{{p.i}}" alt="{{p.t}}"><sc-if value="{{p.h}}"><img class="hp-img hp-card__alt" src="{{p.h}}" alt=""></sc-if>
+</span>
+<span class="hp-card__row hp-card__name"><span>{{p.t}}</span><sc-if value="{{p.c}}" hint-placeholder-val="{{yes}}"><x-import component-from-global-scope="IndieRidge.Rating" value="{{p.r}}" count="{{p.c}}"></x-import></sc-if></span>
+<span class="hp-card__row hp-card__sub"><span>{{p.s}}</span><span>{{p.p}}</span></span>
+</a>
+</sc-for>
+</div>
+</section>
+</div>
+</template>
+<script src="js/react.production.min.js"></script>
+<script src="js/react-dom.production.min.js"></script>
+<script src="js/bundle.js"></script>
+<script src="js/dc.js?v=2"></script>
+<script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._lastY = 0;
+    // Listens on the document so it also works inside the phone-frame board, where a box scrolls instead of the window
+    this._onScroll = (e) => {
+      const t = e.target;
+      if (t !== document && t.closest && t.closest('.p3')) return;
+      const y = t === document ? window.scrollY : t.scrollTop, d = y - this._lastY;
+      if (Math.abs(d) < 6) return;
+      const hide = y > 120 && d > 0;
+      this._lastY = y;
+      if (hide !== !!this.state.navHidden) this.setState({ navHidden: hide });
+    };
+    document.addEventListener('scroll', this._onScroll, { capture: true, passive: true });
+  }
+  componentWillUnmount() { document.removeEventListener('scroll', this._onScroll, { capture: true }); }
+  renderVals() {
+    const PDP = 'drawer.html';
+    const WP = 'Waterproof Motorcycle Boots', VB = 'Ventilated Motorcycle Boots', GL = 'Motorcycle Gloves';
+    const SIDE = { 'The Crow': 'assets/crow-side.jpg', 'The Comanche': 'assets/comanche-side.jpg', 'The Knight': 'assets/knight-side.jpg', 'The Armstrong': 'assets/armstrong-side.jpg', 'The Mohawk': 'assets/mohawk-side.jpg', 'The Apache': 'assets/apache-side.jpg' };
+    const card = (t, s, p, c, i, n, f, href, r) => ({ t, s, p, c, i: SIDE[t] || i, h: SIDE[t] ? i : '', n: !!n, f: f || '', fcls: 'hp-badge hp-badge--line', href: href || PDP, r: r || 4.9 });
+    const V1 = [
+      card('The Comanche', WP, '$195', 1421, 'assets/378c0330fb63d30ebe9c5d8acebdd9c5.jpg', 1, 'Waterproof'),
+      card('The Crow', WP, '$195', 1707, 'assets/de566a29c241da24013e223b1b4b1767.jpg', 1, 'Waterproof'),
+      card('The Golden Glove', GL, '$85', 332, 'assets/e8c53f3c844397af48646f9a61938b55.jpg'),
+      card('Full Gauntlet • Brown', GL, '$85', 236, 'assets/b1a3da0592ec4c5f137dd36fab09fbf3.jpg'),
+      card('The Mohawk', WP, '$195', 349, 'assets/d9abac9fe9864afa1426feaaf844608e.jpg', 1, 'Waterproof'),
+      card('The Apache', WP, '$195', 285, 'assets/84a031720af1e9ae7450492c331ce6c2.jpg', 0, 'Waterproof'),
+      card('Denim On Brown', GL, '$85', 180, 'assets/8ab98c6b6812dc23c370d31ef130d712.jpg'),
+      card('Black Classic Snapback', 'Snapback Hats', '$38', 16, 'assets/60a3951db398fbb071042d4955484740.jpg', 1)
+    ];
+    const ALT = {
+      'Motorcycle Boots': [
+        card('The Crow', WP, '$195', 1707, 'assets/1550e12ed87bfe09bf96d2cd704ecc2b.jpg', 1, 'Waterproof'),
+        card('The Comanche', WP, '$195', 1421, 'assets/02abdf6ea6ed328c40896607cabd5bc3.jpg', 1, 'Waterproof'),
+        card('The Knight', VB, '$195', 372, 'assets/61ab92a9e8bc7b933e060cdd43be289d.jpg', 0, 'Ventilated'),
+        card('The Armstrong', VB, '$195', 372, 'assets/611e13b394dfcd2477bb4bbeb62a6df0.webp', 0, 'Ventilated'),
+        card('The Mohawk', WP, '$195', 349, 'assets/1949060cd90d1194f3a6114fa846e448.jpg', 1, 'Waterproof'),
+        card('The Apache', WP, '$195', 285, 'assets/b6b04d96226470f6bee8d166cb508676.jpg', 0, 'Waterproof')
+      ],
+      'Motorcycle Gloves': [
+        card('Full Gauntlet • Brown', GL, '$85', 236, 'assets/a758fff12ca7003d9af78e0117bfcfdd.jpg'),
+        card('The Golden Glove', GL, '$85', 332, 'assets/713d050902a6f489231a55d1e070ee1b.jpg'),
+        card('The Getaway Glove', GL, '$85', 120, 'assets/bebe2b5742b930cf9ba85bf80c9222cc.webp'),
+        card('Denim On Brown', GL, '$85', 180, 'assets/2baa8e68136a0c727998cc00aab800a0.jpg')
+      ],
+      'Apparel': [
+        card('Old Soul Racing', 'The Seven Year Shirt', '$34', 17, 'assets/fcab7d1b9a031f8acd710fe623e3fde8.jpg', 0, 0, 0, 5),
+        card('Heather Gray', 'The Seven Year Shirt', '$24', 524, 'assets/7280eec928f2b5da040445d650e4dc48.jpg', 0, 0, 0, 5),
+        card('White Long Sleeve', 'The Seven Year Shirt', '$30', 59, 'assets/46837c90fcdfa6757f15bae15d354e03.jpg'),
+        card('Red Skull On Black', 'The Seven Year Shirt', '$34', 13, 'assets/dad8ce3efb22e405cc19a5e56aec77cb.jpg', 1)
+      ],
+      'Accessories': [
+        card('The Original Skull', 'Face Masks', '$9.99', 50, 'assets/7aa9b315c0c77705a756152d22ae6285.jpg'),
+        card('The American', 'Face Masks', '$9.99', 59, 'assets/8f86f4c64563d8ffd8a738c96c488e51.jpg'),
+        card('Black Classic Snapback', 'Snapback Hats', '$38', 16, 'assets/6130f8ef167874e0752aa6a41efa58d7.jpg', 1),
+        card('Camo Trucker', 'Trucker Hats', '$34', 16, 'assets/30c0d18396fb1388ff9e83e8c4aea9cb.jpg', 1)
+      ]
+    };
+    const isAlt = (this.props.version ?? 'v1') === 'alt';
+    const tab = this.state.tab || 'Motorcycle Boots';
+    const row = (id, dir) => () => { const el = document.getElementById(id); if (el) el.scrollBy({ left: dir * (el.firstElementChild ? el.firstElementChild.offsetWidth + 10 : 300), behavior: 'smooth' }); };
+    const pickTab = (t) => () => { this.setState({ tab: t }); const el = document.getElementById('best-row'); if (el) el.scrollTo({ left: 0 }); };
+    return {
+      yes: true, no: false, rating: 4.9,
+      rootCls: isAlt ? 'p3 hp hp--alt' : 'p3 hp', pdp: PDP, pdpCe: PDP,
+      cartCount: this.state.cart || 0,
+      cbarCls: this.state.navHidden ? 'nh-cbar is-hidden' : 'nh-cbar',
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      isAlt, isV1: !isAlt,
+      tabs: Object.keys(ALT).map((t) => ({ label: t, on: String(t === tab), pick: pickTab(t) })),
+      products: isAlt ? ALT[tab] : V1,
+      bestPrev: row('best-row', -1), bestNext: row('best-row', 1),
+      diffPrev: row('diff-row', -1), diffNext: row('diff-row', 1),
+      cats: [
+        { l: 'Waterproof Boots', i: 'assets/e66558e3710790ebd6a69f09c25df490.jpg', alt: 'Black leather waterproof boot with a tan sole on a motorcycle foot peg', href: PDP },
+        { l: 'Summer Boots', i: 'assets/8179b723d2b55e450a23a78d5413456c.jpg', alt: 'Brown perforated boot with a white sole on a motorcycle foot peg', href: '#' },
+        { l: 'Motorcycle Gloves', i: 'assets/f1ba0681febf9a634d87991ff245b926.jpg', alt: 'Pair of black leather riding gloves resting on a gloss black fuel tank', href: '#' },
+        { l: 'Apparel', i: 'assets/354d8d545dd170f557f5b4dc89850962.jpg', alt: 'Tattooed rider in a white tee seated by a brick wall', href: '#' },
+        { l: 'Accessories', i: 'assets/203db95003cb3ab42d1ef4b83b61adee.jpg', alt: 'Rider in mirrored glasses and a black skull face mask', href: '#' }
+      ]
+    };
+  }
+}
+const q = new URLSearchParams(location.search);
+mountDC(Component, { version: q.get('type') === 'tabbed' ? 'alt' : 'v1' });
+</script>
+</body>
+</html>
