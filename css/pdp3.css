@@ -79,10 +79,10 @@
 .optlabel .optval { text-transform: none; }
 .soles { display: flex; gap: 10px; margin-top: 12px; }
 .sole { width: 36px; height: 36px; padding: 0; border: 1px solid #8a8a8a; border-radius: 1px; cursor: pointer; }
-.sole[aria-checked="true"] { border: 3px solid var(--red); }
+.sole[aria-checked="true"] { border: 2px solid var(--red); }
 .sizes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; }
 .chip { width: 66px; height: 36px; padding: 0; border: 1px solid var(--ink); border-radius: 1px; background: #ffffff; font-size: 15px; letter-spacing: -.5px; color: var(--text); cursor: pointer; }
-.chip[aria-checked="true"] { border: 3px solid var(--red); }
+.chip[aria-checked="true"] { border: 2px solid var(--red); }
 .chip.is-out { border-color: var(--line); color: var(--muted); }
 .chip.is-out[aria-checked="true"] { border-color: var(--red); }
 .sizes-foot { margin-top: 8px; font-size: 13px; }
@@ -281,8 +281,8 @@
 .btn-soldout, .btn-soldout:disabled { background: #9b9b9b; cursor: not-allowed; }
 .btn-dark:hover { background: #000000; }
 .chip.is-out:not([aria-checked="true"]):hover { border-color: #8a8a8a; }
-.chip:not(.is-out):not([aria-checked="true"]):hover { box-shadow: inset 0 0 0 2px var(--ink); }
-.sole:not([aria-checked="true"]):hover { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.chip:not(.is-out):not([aria-checked="true"]):hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.sole:not([aria-checked="true"]):hover { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .thumb:not([aria-current="true"]):hover { border-color: #8a8a8a; }
 .qty button:hover { background: var(--grey); }
 .fchip:hover { background: var(--grey); }
