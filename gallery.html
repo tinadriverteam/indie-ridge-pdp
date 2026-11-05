@@ -31,7 +31,7 @@ body { margin: 0; }
 <nav class="{{cbarCls}}" aria-label="Collections"><a href="#">Boots</a><a href="#">Gloves</a><a href="#">Apparel</a><a href="#">Accessories</a></nav>
 </div>
 
-<div class="top">
+<div class="{{topCls}}">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a><span aria-hidden="true">/</span><a href="#">{{collection}}</a><span aria-hidden="true">/</span><span aria-current="page">The Crow</span></nav>
 
 <section class="{{piCls}}" aria-label="Product">
@@ -495,6 +495,7 @@ class Component extends DCLogic {
       openSize: isAcc ? () => { this.setState({ measOpen: true }); setTimeout(() => { const d = document.getElementById('acc-meas'); if (d) { d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 0); } : open('Size & fit'),
       isDrawer: !isAcc, isAccordion: isAcc, isGrid, isCarousel: !isGrid,
       piCls: isGrid ? 'pi pi--grid' : 'pi',
+      topCls: isAcc ? 'top top--white' : 'top',
       measOpen: !!this.state.measOpen,
       aboutNote: m ? '[Men’s fit notes, from the men’s product metafields]' : '[Women’s fit notes, from the women’s product metafields]',
       zoomOn: !!zoomItem && zoomItem !== V, zoomSrc: zoomItem && zoomItem !== V ? zoomItem[0] : '', zoomAlt: zoomItem && zoomItem !== V ? zoomItem[1] : '',
