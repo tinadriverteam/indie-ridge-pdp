@@ -19,7 +19,7 @@ body { margin: 0; }
 <body>
 <div id="root"></div>
 <template id="tpl">
-<div class="p3 hp" style="font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #232323; background: #ffffff;">
+<div class="{{rootCls}}" style="font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #232323; background: #ffffff;">
 
 <div class="nh">
 <div class="nh-ann"><span>Free shipping for orders over $200</span><span class="nh-ann__sep" aria-hidden="true"></span><a href="#">Exchanges &amp; returns</a></div>
@@ -227,7 +227,7 @@ class Component extends DCLogic {
     const pickTab = (t) => () => { this.setState({ tab: t }); const el = document.getElementById('best-row'); if (el) el.scrollTo({ left: 0 }); };
     return {
       yes: true, no: false, rating: 4.9,
-      pdp: PDP, pdpCe: PDP,
+      rootCls: isAlt ? 'p3 hp hp--alt' : 'p3 hp', pdp: PDP, pdpCe: PDP,
       cartCount: this.state.cart || 0,
       cbarCls: this.state.navHidden ? 'nh-cbar is-hidden' : 'nh-cbar',
       noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
