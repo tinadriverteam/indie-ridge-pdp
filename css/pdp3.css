@@ -42,7 +42,7 @@
 
 /* Top: breadcrumb + product information on grey */
 .top { background: var(--grey); padding: 0 48px 80px; }
-/* Accordion layout: a white top so the gallery stands out */
+/* Gallery grid layout: a white top so the gallery stands out */
 .top--white { background: #ffffff; }
 .top--white .fit { background: var(--grey); }
 .crumbs { display: flex; gap: 8px; align-items: center; padding: 20px 0 21px; font-size: 13px; }

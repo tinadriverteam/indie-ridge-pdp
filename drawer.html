@@ -495,7 +495,7 @@ class Component extends DCLogic {
       openSize: isAcc ? () => { this.setState({ measOpen: true }); setTimeout(() => { const d = document.getElementById('acc-meas'); if (d) { d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 0); } : open('Size & fit'),
       isDrawer: !isAcc, isAccordion: isAcc, isGrid, isCarousel: !isGrid,
       piCls: isGrid ? 'pi pi--grid' : 'pi',
-      topCls: isAcc ? 'top top--white' : 'top',
+      topCls: isGrid ? 'top top--white' : 'top',
       measOpen: !!this.state.measOpen,
       aboutNote: m ? '[Men’s fit notes, from the men’s product metafields]' : '[Women’s fit notes, from the women’s product metafields]',
       zoomOn: !!zoomItem && zoomItem !== V, zoomSrc: zoomItem && zoomItem !== V ? zoomItem[0] : '', zoomAlt: zoomItem && zoomItem !== V ? zoomItem[1] : '',
