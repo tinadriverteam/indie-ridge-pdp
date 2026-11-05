@@ -70,7 +70,7 @@ body { margin: 0; }
 <a class="hp-card" href="{{p.href}}">
 <span class="hp-card__media">
 <span class="hp-badges"><sc-if value="{{p.n}}" hint-placeholder-val="{{yes}}"><span class="hp-badge hp-badge--new">New</span></sc-if><sc-if value="{{p.f}}" hint-placeholder-val="{{yes}}"><span class="{{p.fcls}}">{{p.f}}</span></sc-if></span>
-<img class="hp-img" src="{{p.i}}" alt="{{p.t}}">
+<img class="hp-img" src="{{p.i}}" alt="{{p.t}}"><sc-if value="{{p.h}}"><img class="hp-img hp-card__alt" src="{{p.h}}" alt=""></sc-if>
 </span>
 <span class="hp-card__row hp-card__name"><span>{{p.t}}</span><sc-if value="{{p.c}}" hint-placeholder-val="{{yes}}"><x-import component-from-global-scope="IndieRidge.Rating" value="{{p.r}}" count="{{p.c}}"></x-import></sc-if></span>
 <span class="hp-card__row hp-card__sub"><span>{{p.s}}</span><span>{{p.p}}</span></span>
@@ -182,7 +182,8 @@ class Component extends DCLogic {
   renderVals() {
     const PDP = 'drawer.html';
     const WP = 'Waterproof Motorcycle Boots', VB = 'Ventilated Motorcycle Boots', GL = 'Motorcycle Gloves';
-    const card = (t, s, p, c, i, n, f, href, r) => ({ t, s, p, c, i, n: !!n, f: f || '', fcls: 'hp-badge hp-badge--line', href: href || PDP, r: r || 4.9 });
+    const SIDE = { 'The Crow': 'assets/crow-side.jpg', 'The Comanche': 'assets/comanche-side.jpg', 'The Knight': 'assets/knight-side.jpg', 'The Armstrong': 'assets/armstrong-side.jpg', 'The Mohawk': 'assets/mohawk-side.jpg', 'The Apache': 'assets/apache-side.jpg' };
+    const card = (t, s, p, c, i, n, f, href, r) => ({ t, s, p, c, i: SIDE[t] || i, h: SIDE[t] ? i : '', n: !!n, f: f || '', fcls: 'hp-badge hp-badge--line', href: href || PDP, r: r || 4.9 });
     const V1 = [
       card('The Comanche', WP, '$195', 1421, 'assets/378c0330fb63d30ebe9c5d8acebdd9c5.jpg', 1, 'Waterproof'),
       card('The Crow', WP, '$195', 1707, 'assets/de566a29c241da24013e223b1b4b1767.jpg', 1, 'Waterproof'),
