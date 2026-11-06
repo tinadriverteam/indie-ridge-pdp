@@ -73,7 +73,8 @@ class Component extends DCLogic {
     const PDP = 'drawer.html';
     const WP = 'Waterproof Motorcycle Boots', VB = 'Ventilated Motorcycle Boots', GL = 'Motorcycle Gloves';
     const SIDE = { 'The Crow': 'assets/crow-side.jpg', 'The Comanche': 'assets/comanche-side.jpg', 'The Knight': 'assets/knight-side.jpg', 'The Armstrong': 'assets/armstrong-side.jpg', 'The Mohawk': 'assets/mohawk-side.jpg', 'The Apache': 'assets/apache-side.jpg' };
-    const card = (t, s, p, c, i, n, f, href, r) => ({ t, s, p, c, i: SIDE[t] || i, h: SIDE[t] ? i : '', n: !!n, f: f || '', fcls: 'hp-badge hp-badge--line', href: href || PDP, r: r || 4.9 });
+    const HOVER = { 'The Crow': 'assets/crow-hover.webp', 'The Comanche': 'assets/comanche-hover.webp', 'The Knight': 'assets/knight-hover.webp', 'The Armstrong': 'assets/armstrong-hover.webp', 'The Mohawk': 'assets/mohawk-hover.webp', 'The Apache': 'assets/apache-hover.webp' };
+    const card = (t, s, p, c, i, n, f, href, r) => ({ t, s, p, c, i: SIDE[t] || i, h: HOVER[t] || '', n: !!n, f: f || '', fcls: 'hp-badge hp-badge--line', href: href || PDP, r: r || 4.9 });
     const V1 = [
       card('The Comanche', WP, '$195', 1421, 'assets/378c0330fb63d30ebe9c5d8acebdd9c5.jpg', 1, 'Waterproof'),
       card('The Crow', WP, '$195', 1707, 'assets/de566a29c241da24013e223b1b4b1767.jpg', 1, 'Waterproof'),
